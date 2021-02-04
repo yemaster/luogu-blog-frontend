@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="blog-uid" content="{{ blogUID }}">
+  <meta name="blog-name" content="{{ blogName }}">
+  <meta name="current-user" content="{{ currentUser }}">
+  <link rel="stylesheet" href="/static/blog/empty/common.css">
+  {{>styles}}
+  <title>{{ title }} - {{ blogName }} - 洛谷博客</title>
+</head>
+<body>
+<div class="ui menu borderless top fixed">
+  <div class="ui container">
+    <a href="." class="logo item">
+      {{ blogName }}
+    </a>
+    <a href="." class="active item">
+      首页
+    </a>
+    <a href="." class="item">
+      文章
+    </a>
+    {{#isBlogAdmin}}
+      <a href="{{ luoguAddress }}/blogAdmin" class="item">
+        管理后台
+      </a>
+    {{/isBlogAdmin}}
+    <div class="right menu">
+      <div id="search"></div>
+    </div>
+  </div>
+</div>
+
+<div class="ui container">
+  <div class="ui two column stackable grid" id="main">
+    <div class="computer only four wide column">
+      <div class="ui card captain">
+        <div class="image">
+          <!--img src="{{ picAddress }}/upload/usericon/{{ blogUID }}.png"-->
+          <img src="https://cdn.luogu.com.cn/upload/usericon/37084.png">
+        </div>
+        <div class="content">
+          <a class="header logo" href=".">{{ blogName }}</a>
+          <div class="description">{{ blogSubtitle }}</div>
+        </div>
+        <div class="extra content">
+          <a href="{{ luoguAddress }}/space/show?uid={{ blogUID }}"><i class="user icon"></i>UID: {{ blogUID }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="twelve wide column">
+      <div id="content">
+        {{>content}}
+      </div>
+      <div class="ui vertical segment footer">
+        <div class="ui divider"></div>
+        <a class="ui mini labeled primary icon button" href="_sitemap">
+          <i class="sitemap icon"></i> Sitemap
+        </a>
+        <a class="ui mini labeled black icon button" href="https://github.com/luogu-dev/luogu-blog-frontend">
+          <i class="github icon"></i> Github
+        </a>
+        <a class="ui mini labeled teal icon button" href="{{ luoguAddress }}">
+          <i class="globe icon"></i> 洛谷
+        </a>
+        <br>
+        Powered by <a class="item" href="{{ luoguAddress }}">Luogu</a> Blog.
+        Theme empty by yemaster.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui light big launch right attached fixed button" id="totop">
+  <i class="angle up icon"></i>
+</div>
+
+<script>
+var BlogGlobals = {
+  blogName: document.querySelector('meta[name=blog-name]').getAttribute('content'),
+  blogUID: parseInt(document.querySelector('meta[name=blog-uid]').getAttribute('content')),
+  currentUser: parseInt(document.querySelector('meta[name=current-user]').getAttribute('content')),
+  luoguAddress: '{{ luoguAddress }}',
+  picAddress: '{{ picAddress }}'
+}
+</script>
+<script src="/static/blog/empty/common.js"></script>
+{{>scripts}}
+</body>
+</html>
